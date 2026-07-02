@@ -1,0 +1,108 @@
+/* legal pages — privacy / accessibility / terms. Calm, readable, dark theme. */
+.legal {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.legal__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px clamp(20px, 5vw, 64px);
+  border-bottom: 1px solid var(--line);
+}
+.legal__back {
+  color: var(--amber);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+.legal__back:hover {
+  text-decoration: underline;
+}
+
+.legal__main {
+  flex: 1;
+  padding: clamp(32px, 6vw, 72px) clamp(20px, 5vw, 64px);
+}
+.legal__article {
+  max-width: 760px;
+  margin-inline: auto;
+}
+.legal__article h1 {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 5vw, 3rem);
+  color: var(--bone);
+  margin-bottom: 0.3em;
+}
+.legal__updated {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: var(--amber);
+  margin-bottom: 2.2rem;
+}
+.legal__article h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.4vw, 1.6rem);
+  color: var(--bone);
+  margin: 2rem 0 0.6rem;
+}
+.legal__article p,
+.legal__article li {
+  color: var(--bone-dim);
+  font-size: 1.02rem;
+  line-height: 1.75;
+}
+.legal__article ul {
+  padding-inline-start: 1.3em;
+  margin: 0.4em 0 1em;
+}
+.legal__article li {
+  margin-bottom: 0.4em;
+}
+.legal__article a {
+  color: var(--amber);
+  text-decoration: underline;
+}
+.legal__article strong {
+  color: var(--bone);
+}
+
+/* placeholder that the business must fill before publishing */
+.fill {
+  background: #7a2f2f;
+  color: #ffe9e0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+
+.legal__footer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px 22px;
+  align-items: center;
+  padding: 22px clamp(20px, 5vw, 64px);
+  border-top: 1px solid var(--line);
+  font-size: 0.9rem;
+}
+.legal__footer a {
+  color: var(--bone);
+  text-decoration: none;
+}
+.legal__footer a:hover {
+  color: var(--amber);
+}
+.legal__footer span {
+  margin-inline-start: auto;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--bone-dim);
+  opacity: 0.7;
+}

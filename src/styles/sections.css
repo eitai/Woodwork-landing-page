@@ -101,7 +101,12 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 12px 24px;
+  gap: 14px 28px;
+}
+.site-footer__brand {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
 }
 .wordmark--sm {
   font-size: 1rem;
@@ -110,11 +115,40 @@
 .site-footer__tag {
   font-size: 0.95rem;
 }
+.site-footer__contact,
+.site-footer__legal {
+  display: flex;
+  gap: 8px 18px;
+  flex-wrap: wrap;
+}
+.site-footer__contact a,
+.site-footer__legal a {
+  color: var(--bone-dim);
+  text-decoration: none;
+  font-size: 0.9rem;
+}
+.site-footer__contact a {
+  color: var(--bone);
+  font-weight: 600;
+}
+.site-footer__contact a:hover,
+.site-footer__legal a:hover {
+  color: var(--amber);
+  text-decoration: underline;
+}
 .site-footer__copy {
   margin-inline-start: auto;
   font-family: var(--font-mono);
   font-size: 0.78rem;
   opacity: 0.7;
+  text-align: end;
+}
+.site-footer__credit {
+  display: block;
+  margin-top: 3px;
+  font-size: 0.72rem;
+  letter-spacing: 0.04em;
+  color: var(--amber); /* full amber = 8.49:1 on --ink (small text needs ≥4.5) */
 }
 @media (max-width: 767px) {
   .site-footer__copy {

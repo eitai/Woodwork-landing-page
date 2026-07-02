@@ -5,6 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 
+    <!-- apply saved accessibility preferences before paint (no flash) -->
+    <script>
+      try {
+        var a = JSON.parse(localStorage.getItem("idb.a11y") || "{}"),
+          r = document.documentElement;
+        if (a.font) r.setAttribute("data-a11y-font", String(a.font));
+        if (a.contrast) r.setAttribute("data-a11y-contrast", "on");
+        if (a.motion) r.setAttribute("data-a11y-motion", "off");
+        if (a.links) r.setAttribute("data-a11y-links", "on");
+      } catch (e) {}
+    </script>
+
     <title>IDB — פרגולות ודקים בהתאמה אישית</title>
     <meta
       name="description"
@@ -22,13 +34,11 @@
     />
     <meta property="og:image" content="/seq/loop/poster.webp" />
 
-    <!-- Fonts (Hebrew): Frank Ruhl Libre (display), Assistant (body), IBM Plex Mono (spec) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap"
-      rel="stylesheet"
-    />
+    <!-- Fonts (Hebrew): Frank Ruhl Libre (display), Assistant (body), IBM Plex Mono (spec).
+         Self-hosted — no third-party request, no cookies, no IP leak to Google. -->
+    <link rel="stylesheet" href="/fonts/fonts.css" />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/assistant-400-hebrew.woff2" crossorigin />
+    <link rel="preload" as="font" type="font/woff2" href="/fonts/frankruhl-900-hebrew.woff2" crossorigin />
 
     <!-- Prime the loop poster (first thing visible); frame tier is chosen at
          runtime by connection speed (src/tier.ts), so frames aren't preloaded here -->

@@ -7,7 +7,9 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "verify": "node verify-scrub.mjs"
+    "verify": "node verify-scrub.mjs",
+    "verify:mobile": "node verify-mobile.mjs",
+    "audit:a11y": "node audit-a11y.mjs"
   },
   "dependencies": {
     "gsap": "^3.13.0",
@@ -15,9 +17,11 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
+    "@types/node": "^26.1.0",
     "@types/react": "^18.3.12",
     "@types/react-dom": "^18.3.1",
     "@vitejs/plugin-react": "^4.3.4",
+    "axe-core": "^4.12.1",
     "playwright": "^1.61.1",
     "typescript": "^5.6.3",
     "vite": "^5.4.11"

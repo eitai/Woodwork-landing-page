@@ -52,6 +52,20 @@ npm run verify     # בדיקת headless של ה-Hero (Playwright + Chrome מע�
 
 `ffprobe` ב-ffmpeg 8.x דחה את `-of csv=...:s=' '` (מפריד רווח); תיקנתי את השורה ל-`s=x`+`tr`.
 
+## תאימות משפטית (ישראל) — ⚠️ לא ייעוץ משפטי
+
+יושמו דרישות הסקיל `israeli-web-compliance`. **להעביר לעו"ד לאישור לפני פרסום.**
+- **נגישות (ת"י 5568 / WCAG 2.0 AA):** מבנה סמנטי, ניווט מקלדת + focus נראה, skip-link,
+  alt לכל התמונות, ניגודיות ≥4.5:1, zoom, RTL. `prefers-reduced-motion` → גרסה סטטית נגישה
+  (אותו תוכן, בלי אנימציה; פוסטר במקום וידאו). אודיט axe: **0 הפרות ב-9 מצבים** (`npm run audit:a11y`).
+- **פרטיות:** אין טפסים, **אין עוגיות, אין אנליטיקס, אין localStorage, אין בקשות צד-שלישי**
+  (הפונטים self-hosted ב-`public/fonts/`). לכן **אין צורך בבאנר עוגיות**.
+- **עמודים משפטיים** (קישורים בפוטר בכל מצב): `/privacy` · `/accessibility` · `/terms`
+  ב-`src/components/LegalPages.tsx`. Routing ב-`App.tsx`; SPA fallback ל-Vercel (`vercel.json`),
+  Netlify (`public/_redirects`) ו-GitHub Pages (`404.html` נוצר ב-build).
+- **placeholders למילוי** מסומנים באדום (`<mark class="fill">`) בעמודים המשפטיים:
+  ח.פ/ע.מ, כתובת, **רכז נגישות (שם+טלפון)**, עיר לסמכות שיפוט, והתאמת נוסח האחסון.
+
 ## מה למלא לפני עלייה לאוויר
 
 `src/config.ts`:

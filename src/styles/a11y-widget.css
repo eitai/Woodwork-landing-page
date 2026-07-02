@@ -1,0 +1,218 @@
+/* Accessibility widget — UI + the html[data-a11y-*] mode rules it toggles.
+   Project palette: --cedar --amber --bone --bone-dim --ink --line. */
+
+/* ── Widget UI ─────────────────────────────────────────────── */
+.a11yw {
+  position: fixed;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  inset-inline-start: 1rem; /* RTL → bottom-right */
+  z-index: 90;
+}
+.a11yw__fab {
+  display: grid;
+  place-items: center;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  color: #2a1e15;
+  background: linear-gradient(135deg, var(--cedar), var(--amber));
+  box-shadow: 0 6px 22px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
+  transition: transform 0.2s ease;
+  border: none;
+  cursor: pointer;
+}
+.a11yw__fab:hover {
+  transform: scale(1.06);
+}
+.a11yw__panel {
+  position: absolute;
+  bottom: calc(100% + 0.6rem);
+  inset-inline-start: 0;
+  width: min(280px, calc(100vw - 2rem));
+  padding: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: rgba(20, 16, 12, 0.98);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--bone);
+  font-family: var(--font-body);
+}
+.a11yw__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.2rem;
+}
+.a11yw__head strong {
+  font-size: 1.05rem;
+  color: var(--bone);
+}
+.a11yw__x {
+  width: 1.8rem;
+  height: 1.8rem;
+  font-size: 1.1rem;
+  color: var(--bone-dim);
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 6px;
+}
+.a11yw__x:hover {
+  color: var(--bone);
+}
+.a11yw__row,
+.a11yw__toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  padding: 0.6rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+.a11yw__toggle {
+  width: 100%;
+  text-align: start;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+.a11yw__toggle:hover {
+  border-color: rgba(227, 168, 92, 0.5);
+}
+.a11yw__steps {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.a11yw__steps button {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  font-weight: 800;
+  color: var(--amber);
+  background: none;
+  cursor: pointer;
+}
+.a11yw__steps button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.a11yw__steps button:not(:disabled):hover {
+  border-color: var(--amber);
+}
+.a11yw__level {
+  min-width: 1ch;
+  text-align: center;
+  color: var(--bone-dim);
+}
+.a11yw__sw {
+  position: relative;
+  flex: none;
+  width: 40px;
+  height: 22px;
+  border-radius: 999px;
+  background: rgba(242, 234, 221, 0.18);
+  transition: background 0.2s;
+}
+.a11yw__sw::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  inset-inline-start: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background: var(--bone-dim);
+  transition: transform 0.2s ease, background 0.2s;
+}
+.a11yw__sw.is-on {
+  background: var(--amber);
+}
+.a11yw__sw.is-on::after {
+  background: #2a1e15;
+  transform: translateX(18px);
+}
+[dir="rtl"] .a11yw__sw.is-on::after {
+  transform: translateX(-18px);
+}
+.a11yw__reset {
+  margin-top: 0.2rem;
+  padding: 0.55rem;
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  font-weight: 700;
+  color: var(--bone-dim);
+  background: none;
+  cursor: pointer;
+}
+.a11yw__reset:hover {
+  color: var(--bone);
+  border-color: var(--amber);
+}
+.a11yw__statement {
+  text-align: center;
+  padding: 0.35rem;
+  color: var(--amber);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* ── a11y modes (set by the widget on <html>) ──────────────── */
+html[data-a11y-font="1"] {
+  font-size: 115%;
+}
+html[data-a11y-font="2"] {
+  font-size: 130%;
+}
+
+html[data-a11y-contrast="on"] {
+  --bone: #ffffff;
+  --bone-dim: #f4eee4;
+  --amber: #ffc879;
+}
+html[data-a11y-contrast="on"] .panel-inner {
+  background: rgba(10, 8, 5, 0.94);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+html[data-a11y-contrast="on"] .reel-scrim {
+  background:
+    linear-gradient(to bottom, rgba(15, 12, 9, 0.7) 0%, rgba(15, 12, 9, 0) 26%),
+    linear-gradient(to top, rgba(15, 12, 9, 0.85) 0%, rgba(15, 12, 9, 0) 48%);
+}
+html[data-a11y-contrast="on"] .hero-title,
+html[data-a11y-contrast="on"] .hero-tag,
+html[data-a11y-contrast="on"] .block-title,
+html[data-a11y-contrast="on"] .work-card__type {
+  text-shadow: 0 2px 6px #000, 0 0 4px #000;
+}
+
+html[data-a11y-motion="off"] *,
+html[data-a11y-motion="off"] *::before,
+html[data-a11y-motion="off"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+html[data-a11y-links="on"] a {
+  text-decoration: underline !important;
+  text-underline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+  .a11yw__fab {
+    width: 46px;
+    height: 46px;
+  }
+}
