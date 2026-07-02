@@ -6,9 +6,19 @@
 ונעלמים לפי מיקום הגלילה. במובייל / `prefers-reduced-motion` → hero סטטי + סקשנים נערמים.
 Stack: **Vite + React + TypeScript + GSAP ScrollTrigger + canvas frame-scrub**, עברית RTL.
 
-זמני הגלילה (progress 0..1): פירוק→הרכבה `0.08–0.55`, ריהוט `0.55–0.85`, סצנת חיים `0.90–1.0`.
-Overlays: intro `0–0.10`, מי אנחנו `0.13–0.35`, עבודות `0.40–0.63`, צור קשר `0.80–1.0`.
-לכוונון — `T` ו-`PANEL` ב-`src/components/PergolaReel.tsx`, ו-`SCRUB_VH` ב-`src/copy.ts`.
+זמני הגלילה (progress 0..1, ביטים מתחלפים — תוכן רק מעל frame קפוא):
+לופ `0–0.08` → פירוק `0.08–0.12` → ★הרכבה `0.12–0.42` → hold+מי אנחנו `0.42–0.56` →
+★ריהוט `0.56–0.74` → hold+עבודות `0.74–0.88` → לופ+צור קשר `0.88–1.0`.
+לכוונון — `T` ו-`PANEL` ב-`src/components/PergolaReel.tsx`, ו-`SCRUB_VH`/`SCRUB_VH_MOBILE` ב-`src/copy.ts`.
+
+**איכות לפי מהירות (src/tier.ts):** `hq` = 24fps/1600px, `lq` = 12fps/960px.
+טלפונים → `lq` (תקציב זיכרון — 242 ביטמפים ב-1600px ≈ 1.4GB מפיל טאבים בספארי);
+דסקטופ → לפי Network Information API או מדידת הורדה אמיתית (סף 5Mbps); Save-Data → `lq`.
+Overrides לבדיקה: `?hq` / `?lq` / `?static` / `?debug` (HUD חי).
+
+**מובייל:** ה-scrub המלא רץ גם בטלפונים (Chromium + WebKit מאומתים) —
+`normalizeScroll` במגע, `ignoreMobileResize`, גובה `svh`, גלילה מקוצרת (7vh),
+פאנלים בפריסת פורטרט. fallback סטטי רק ל-`?static` או מכשירי ≤2GB RAM.
 
 ## הרצה
 
