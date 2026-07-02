@@ -1,0 +1,135 @@
+/* ---- design tokens (BUILD_SPEC §7) ---- */
+:root {
+  --espresso: #2a1e15; /* dark wood — hero bg / text */
+  --cedar: #b5763f; /* cedar — primary accent */
+  --amber: #e3a85c; /* golden-hour light — glow / hover */
+  --bone: #f2eadd; /* warm cream — light bg */
+  --olive: #6e7355; /* garden green — secondary */
+  --ink: #1c1712; /* warm near-black */
+
+  --bone-dim: #e6dccb;
+  --line: rgba(242, 234, 221, 0.16);
+
+  --font-display: "Frank Ruhl Libre", "Georgia", serif;
+  --font-body: "Assistant", system-ui, -apple-system, sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", "Consolas", monospace;
+
+  --maxw: 1180px;
+  --pad: clamp(20px, 5vw, 72px);
+}
+
+/* NOTE: no overflow/transform/filter on html, body, #root — they would break
+   ScrollTrigger pinning (BUILD_SPEC §9 / CLAUDE_CODE_PROMPT step 1). */
+* {
+  box-sizing: border-box;
+}
+
+/* NOTE: no scroll-behavior:smooth here — CSS smooth scrolling fights the pinned
+   scrub (nav uses JS scrollTo with behavior:"smooth" where wanted). */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--bone);
+  font-family: var(--font-body);
+  font-weight: 400;
+  font-size: clamp(16px, 1.05vw + 12px, 19px);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* visible keyboard focus everywhere (a11y) */
+:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ---- layout helpers ---- */
+.wrap {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding-inline: var(--pad);
+}
+
+.section {
+  padding-block: clamp(72px, 12vh, 148px);
+}
+
+.eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin: 0 0 1.1rem;
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+  margin: 2.2rem 0 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.spec-list li {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  letter-spacing: 0.02em;
+  padding: 10px 16px;
+  border: 1px solid rgba(242, 234, 221, 0.22);
+  border-radius: 999px;
+  background: rgba(242, 234, 221, 0.06);
+  white-space: nowrap;
+}
+
+.spec-list li::before {
+  content: "› ";
+  color: var(--amber);
+}
+
+/* ---- reduced motion: keep it calm ---- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}

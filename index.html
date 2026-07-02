@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>IDB — פרגולות ודקים בהתאמה אישית</title>
+    <meta
+      name="description"
+      content="IDB — תכנון ובניית פרגולות ודקים בהתאמה אישית. נגרות מדויקת, חומרים עמידים וגימור מוקפד, מהשרטוט ועד המבנה המוגמר."
+    />
+    <meta name="theme-color" content="#2A1E15" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="he_IL" />
+    <meta property="og:title" content="IDB — פרגולות ודקים בהתאמה אישית" />
+    <meta
+      property="og:description"
+      content="מהשרטוט ועד הצל. פרגולות ודקים בהתאמה אישית — תכנון, נגרות מדויקת וחומרים עמידים."
+    />
+    <meta property="og:image" content="/seq/loop/poster.webp" />
+
+    <!-- Fonts (Hebrew): Frank Ruhl Libre (display), Assistant (body), IBM Plex Mono (spec) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700&family=Frank+Ruhl+Libre:wght@500;700;900&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Prime the loop poster (first thing visible); frame tier is chosen at
+         runtime by connection speed (src/tier.ts), so frames aren't preloaded here -->
+    <link rel="preload" as="image" href="/seq/loop/poster.webp" />
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "@id": "https://idb.co.il/#business",
+        "name": "IDB — פרגולות ודקים",
+        "description": "תכנון ובניית פרגולות ודקים בהתאמה אישית: נגרות מדויקת, חומרים עמידים וגימור מוקפד.",
+        "image": "https://idb.co.il/seq/loop/poster.webp",
+        "url": "https://idb.co.il/",
+        "areaServed": { "@type": "Country", "name": "IL" },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "בניית פרגולות בהתאמה אישית",
+              "serviceType": "פרגולות עץ"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "בניית דקים",
+              "serviceType": "דקי עץ"
+            }
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
